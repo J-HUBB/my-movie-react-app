@@ -13,11 +13,11 @@ const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzU1MWIyNTNkODBmNDYwMTU5ZTA1YTllNGQwZThkMSIsIm5iZiI6MTc0NDMwMzg4MS4xOTcsInN1YiI6IjY3ZjdmNzA5MWJjNjM5NTY2YWQ5YTI0NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.P_TJpYiLQdCjRY5cjDn0PAPgMHFrb1RmXCO_WPe3H54`,
+    Authorization: `Bearer ${API_KEY}`,
   },
 };
 
-const App = (props) => {
+const App = () => {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -28,7 +28,7 @@ const App = (props) => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   // Debounce the search term to prevent making too many API requests by waiting
   // for the user to stop typing for 500ms
-  useDebounce(() => setDebouncedSearchTerm(searchTerm), 500, [searchTerm]);
+  useDebounce(() => setDebouncedSearchTerm(searchTerm), 1000, [searchTerm]);
 
   const fetchMovies = async (query = "") => {
     setIsLoading(true);
